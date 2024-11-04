@@ -1,14 +1,17 @@
-const express = require('express');
+// server/index.js
+const express = require("express");
 const app = express();
-const port = 5000;
+const PORT = 5000;
 
+// Middleware to parse JSON bodies
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('Welcome to the Customer Support Dashboard API');
+// Sample route to test the server
+app.get("/api", (req, res) => {
+  res.send("API is working!"); // Or return any data you want
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
-
