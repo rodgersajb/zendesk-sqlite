@@ -10,3 +10,5 @@ VALUES
     ('Alice', 'tremendous.lemur.wckz@flashpost.net', 25),
     ('Bob', 'rwz0s@livinitlarge.net', 30),
     ('Charlie', 'colohek646@operades.com', 35)
+
+DROP TABLE users
