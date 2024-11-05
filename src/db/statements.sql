@@ -1,8 +1,8 @@
 CREATE TABLE users (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
-name TEXT NOT NULL,
-email TEXT NOT NULL,
-age INTEGER 
+family_name TEXT NOT NULL,
+given_name TEXT NOT NULL,
+email TEXT NOT NULL
 )
 
 INSERT INTO users (name, email, age) 
