@@ -1,5 +1,5 @@
 import Database from "better-sqlite3";
-import { error } from "console";
+
 const db = new Database("database.db");
 db.pragma("journal_mode = WAL");
 const createTable = () => {

@@ -12,3 +12,14 @@ VALUES
     ('Charlie', 'colohek646@operades.com', 35)
 
 DROP TABLE users
+
+CREATE TABLE zendeskusers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    family_name TEXT NOT NULL,
+    given_name TEXT NOT NULL,
+    email TEXT NOT NULL
+);
+
+INSERT INTO zendeskusers (family_name, given_name, email)
+VALUES
+('Shimt', 'Shompster', 'shimpt@shampt.com')
