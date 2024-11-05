@@ -14,24 +14,37 @@ const createTable = () => {
   db.prepare(sql).run();
 };
 
+export const getUserByEmail = (email) => {
+  const sql = `
+    SELECT * FROM users WHERE email = ?;
+    
+  
+  `;
+  return db.prepare(sql).get(email);
+};
+
 export const addUserToDatabase = (id, family_name, given_name, email) => {
-    const sql =
-    `
+  const existingUser = getUserByEmail(email);
+  if (existingUser) {
+    console.log("user already exists");
+    return;
+  }
+  const sql = `
     INSERT INTO users (
         id,
         family_name,
         given_name,
         email
     )
-    `
-    if (error) {
-      console.log('error adding user', error);
-    } else {
-      db.prepare(sql).run(id, family_name, given_name, email);
-      console.log('user added');
-      
-    }
-  };
+    VALUES (?, ?, ?, ?)
+    `;
+  if (error) {
+    console.log("error adding user", error);
+  } else {
+    db.prepare(sql).run(id, family_name, given_name, email);
+    console.log("user added");
+  }
+};
 const getUsers = () => {
   const sql = `
         SELECT * FROM users
