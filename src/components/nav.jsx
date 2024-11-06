@@ -12,13 +12,35 @@ export default function Nav() {
 
       // see if user was successfully registered
       if (user) {
-        // send to backend
-        await axios.post("/api/registerUser", {
-          id: user.id,
-          email: user.email,
-          given_name: user.given_name,
-          family_name: user.family_name,
-        });
+
+        const authHeader = `Basic ${btoa(`${process.env.ZENDESK_USERNAME}:${process.env.ZENESK_API_TOKEN}`)}`;
+        const response = await axios.post(
+          "http://localhost:5000/api/registerUser",
+          {
+            user: {
+              
+              id: user.id,
+              family_name: user.family_name,
+              given_name: user.given_name,
+              email: user.email,
+              external_id: "external_user_008", 
+              identities: [
+                { type: "email", value: user.email },
+                
+              ],
+              organization: { name: "General" }, 
+              role: "end-user",
+            },
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": authHeader,
+            },
+          }
+        );
+
+        console.log("Response from API:", response.data);
       }
     } catch (error) {
       console.error("Registration failed", error);
